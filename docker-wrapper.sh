@@ -15,7 +15,11 @@ for i in $*
 do
   if [ $VOLUME_ARG -eq 1 ]; then
     # Check access to volume
-    # TODO: handle results
+    ACCESS=$(sudo -u "#$SUDO_UID" python check_access.py $i)
+    if [ $? -ne 0 ]; then
+      echo $ACCESS
+      exit 1
+    fi
     # TODO: ensure /data is the first part of the path
     sudo -u "#$SUDO_UID" python check_access.py $i
   fi
@@ -28,5 +32,6 @@ do
   fi
 done
 
-echo "All args: $@"
+echo "PASS"
+
 

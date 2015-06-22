@@ -2,16 +2,7 @@
 
 import os
 import sys
-
-def parse_volume_spec(volume_spec):
-  # Docker volumes may be "/src:dest:ro" or simply "/src"
-  components = volume_spec.split(':')
-  perm = 'w' # assume write perm if not specified
-  src_path = components[0]
-  # check if ro specified
-  if components[-1] == 'ro':
-    perm = 'r'
-  return (src_path, perm)
+from parse_docker_args import parse_mount
 
 def can_access(path, perm):
   mode = None
@@ -27,11 +18,11 @@ if __name__ == '__main__':
   if len(sys.argv) < 2:
     exit
   volume_spec = sys.argv[1]
-  path, perm = parse_volume_spec(volume_spec)
+  path, perm = parse_mount(volume_spec)
   uid = os.getuid()
   if can_access(path, perm):
-    print "PASS: u {} has {} access to {}".format(uid, perm, path)
+    print "PASS: UID {} has {} access to {}".format(uid, perm, path)
     exit(0)
   else:
-    print "ERROR: u {} has no {} access to {}".format(uid, perm, path)
+    print "ERROR: UID {} has no {} access to {}".format(uid, perm, path)
     exit(1)
