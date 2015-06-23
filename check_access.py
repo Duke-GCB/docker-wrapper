@@ -16,7 +16,9 @@ def can_access(path, perm):
 
 if __name__ == '__main__':
   if len(sys.argv) < 2:
-    exit
+    print "USAGE: {} <docker volume spec>".format(sys.argv[0])
+    print "e.g. {} /data/somelab:/input:rw".format(sys.argv[0])
+    exit(1)
   volume_spec = sys.argv[1]
   path, perm = parse_mount(volume_spec)
   uid = os.getuid()
