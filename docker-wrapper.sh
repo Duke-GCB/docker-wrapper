@@ -2,9 +2,8 @@
 
 # docker-wrapper run -v /foo:/bar image args
 
-# Must be run as sudo
-
-if [ -z "$SUDO_UID" ]; then
+# Must be root via sudo
+if [ "$(whoami)" != "root" ] || [ -z "$SUDO_UID" ]; then
   echo "Error: Must be run with sudo"
   exit 1
 fi
