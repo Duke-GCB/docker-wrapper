@@ -20,8 +20,12 @@ do
       echo $ACCESS
       exit 1
     fi
-    # TODO: ensure /data is the first part of the path
-    sudo -u "#$SUDO_UID" python check_access.py $i
+    # Ensure path is whitelisted
+    IS_DATA=$(sudo -u "#$SUDO_UID" python check_path_whitelist.py $i)
+    if [ $? -ne 0 ]; then
+      echo $IS_DATA
+      exit 1
+    fi
   fi
 
   # look for -v or --volume to signal if next argument is a volume mount
