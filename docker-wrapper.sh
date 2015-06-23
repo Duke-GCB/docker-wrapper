@@ -36,6 +36,8 @@ do
   fi
 done
 
-echo "PASS"
+# Pass all arguments to docker
+
+docker $@
 
 
