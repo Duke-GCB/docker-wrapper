@@ -4,7 +4,7 @@ setup(
     name='docker-wrapper',
     version='1.0.0',
     packages=[''],
-    package_data={'': ['docker-wrapper.sh', 'docker-pipeline.sh']},
+    package_data={'': ['docker-wrapper.sh']},
     include_package_data=True,
     url='https://github.com/Duke-GCB/docker-wrapper',
     license='MIT',
