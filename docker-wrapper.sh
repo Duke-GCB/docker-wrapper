@@ -9,7 +9,7 @@ if [ "$(whoami)" != "root" ] || [ -z "$SUDO_UID" ]; then
 fi
 
 # Get the directory of this script, for paths to python files
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+DIR="$(dirname "$(readlink -f "$0")")"
 
 # Specify exact python location - uses 2.7 and doesn't rely on path
 PYTHON_BIN="/usr/local/bin/python"
