@@ -3,9 +3,8 @@ from distutils.core import setup
 setup(
     name='docker-wrapper',
     version='1.0.0',
-    packages=[''],
-    package_data={'': ['docker-wrapper.sh']},
-    include_package_data=True,
+    packages=['docker-wrapper'],
+    scripts=['bin/docker-wrapper.sh'],
     url='https://github.com/Duke-GCB/docker-wrapper',
     license='MIT',
     author='dcl9',
